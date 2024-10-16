@@ -1,6 +1,0 @@
-@extends('adminlte::auth.login')
-@extends('adminlte::auth.register')
-@extends('adminlte::auth.verify')
-@extends('adminlte::auth.passwords.confirm')
-@extends('adminlte::auth.passwords.email')
-@extends('adminlte::auth.passwords.reset')
