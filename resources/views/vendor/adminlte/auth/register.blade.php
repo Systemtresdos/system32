@@ -18,17 +18,41 @@
         @csrf
 
         {{-- Name field --}}
+        <div style = "display: flex; width: "60%;">
+            <input type="text" name="fname" class="form-control @error('name') is-invalid @enderror"
+                value="{{ old('fname') }}" placeholder="{{ __('adminlte::adminlte.first_name') }}" autofocus>
+                <div class="input-group mb-3">
+                    <input type="text" name="lname" class="form-control @error('name') is-invalid @enderror"
+                        value="{{ old('lname') }}" placeholder="{{ __('adminlte::adminlte.last_name') }}" autofocus>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                        </div>
+                    </div>
+            </div>  
+        </div> 
+            @error('fname')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            @error('lname')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+    {{-- Date field --}}
         <div class="input-group mb-3">
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                   value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
+            <input type="date" name="date" class="form-control @error('date') is-invalid @enderror"
+                   value="{{ old('date') }}" placeholder="{{ __('adminlte::adminlte.born_date') }}">
 
             <div class="input-group-append">
                 <div class="input-group-text">
-                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                    <span class="fas fa-calendar {{ config('adminlte.classes_auth_icon', '') }}"></span>
                 </div>
             </div>
 
-            @error('name')
+            @error('date')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

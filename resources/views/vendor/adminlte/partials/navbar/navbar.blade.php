@@ -31,8 +31,12 @@
             @else
                 @include('adminlte::partials.navbar.menu-item-logout-link')
             @endif
+        @else
+            <a href="{{ route('login') }}" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
+                <span class="fas fa-sign-in-alt"></span>
+                {{ __('adminlte::adminlte.sign_in') }}
+            </a>
         @endif
-
         {{-- Right sidebar toggler link --}}
         @if($layoutHelper->isRightSidebarEnabled())
             @include('adminlte::partials.navbar.menu-item-right-sidebar-toggler')

@@ -2,7 +2,9 @@
 
 return [
 
-    'full_name' => 'Full name',
+    'first_name' => 'First name',
+    'last_name' => 'Last name',
+    'born_date' => 'Born date',
     'email' => 'Email',
     'password' => 'Password',
     'retype_password' => 'Retype password',

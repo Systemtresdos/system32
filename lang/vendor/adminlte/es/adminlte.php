@@ -1,8 +1,9 @@
 <?php
 
 return [
-
-    'full_name' => 'Nombre completo',
+    'first_name' => 'Nombre',
+    'last_name' => 'Apellido',
+    'born_date' => 'Fecha de nacimiento',
     'email' => 'Email',
     'password' => 'Contraseña',
     'retype_password' => 'Confirmar la contraseña',
