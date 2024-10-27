@@ -20,7 +20,25 @@
                 @endif>
                 {{-- Configured sidebar links --}}
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
-            </ul>
+                {{-- Login --}}
+                @if (Auth::user())
+                {{-- Empleado --}}
+                <li class="nav-header ">Administracion</li>
+                <li class="nav-item has-treeview">
+                    <a class="nav-link  " href="">
+                        <i class="fas fa-fw fa-database "></i>
+                        <p>Base de datos<i class="fas fa-angle-left right"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                        <a class="nav-link  " href="{{url('crud-usuario')}}">
+                            <i class="far fa-fw fa-circle "></i>
+                            <p>Usuarios</p>
+                        </a>
+                    </ul>
+                </li>
+                
+                @endif
         </nav>
     </div>
 

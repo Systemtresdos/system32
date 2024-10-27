@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\usuario;
+use App\Models\Usuario;
+use App\Models\Rol;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -12,7 +13,20 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = new Usuario();
+        $arregloDatos = $usuario->data();
+        $datos = Usuario::all();
+        $nombre = "Usuario";
+        $fk = [
+            [
+                'name' => 'Rol',
+                'attr' => 'rol_fk',//Este se usara como un identificador para get_fk
+                'fk_name' => 'nombre',
+                'fk_id' => 'id',
+                'data' => Rol::select('id', 'nombre')->get(),
+            ],
+        ];
+        return view('crud', compact('datos','arregloDatos','nombre','fk'));
     }
 
     /**

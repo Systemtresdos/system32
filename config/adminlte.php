@@ -321,12 +321,49 @@ $config = [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
+            'text' => 'main',
+            'url' => '/',
+            'icon' => 'far fa-fw fa-file',
+            'label_color' => 'success',
+        ],
+        ['header' => 'categories'],
+        [
+            'text' => 'hard_drive',
+            'url' => '/hd',
+            'icon' => 'far fa-fw fa-file',
+            'label' => 1,
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'CPU',
+            'url' => '/cpu',
+            'icon' => 'far fa-fw fa-file',
+            'label' => 2,
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'GPU',
+            'url' => '/gpu',
+            'icon' => 'far fa-fw fa-file',
+            'label' => 3,
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'RAM',
+            'url' => '/ram',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
             'label_color' => 'success',
         ],
+        [
+            'text' => 'other',
+            'url' => '/o',
+            'icon' => 'fas fa-fw fa-user',
+            'label' => 5,
+            'label_color' => 'success',
+        ],
+
+        /*
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -396,6 +433,24 @@ $config = [
             'text' => 'information',
             'icon_color' => 'cyan',
             'url' => '#',
+        ],*/
+    ],
+    'menu_login' =>[
+        ['header' => 'Pedidos'],
+        [
+            'text' => 'Pendientes',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'change_password',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'Login',
+            'url' => '/login',
+            'icon' => 'fas fa-fw fa-lock',
         ],
     ],
 

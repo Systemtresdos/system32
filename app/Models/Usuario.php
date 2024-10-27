@@ -51,6 +51,45 @@ class Usuario extends Authenticatable
     }
     public function rol()
     {
-        return $this->belongsTo(Rol::class,'rol_fk');
+        return $this->belongsTo(Rol::class, 'rol_fk');
+    }
+    public function get_fk()
+    {
+        return [
+            'rol_fk' => $this->rol->nombre,
+        ];
+    }
+
+    public function data(){
+        
+        return [
+            'data' => [
+                [
+                    'dName' => 'ID',
+                    'name' => 'id',
+                    'type' => 'auto',
+                ],
+                [
+                    'dName' => 'Nombre',
+                    'name' => 'nombre',
+                    'type' => 'text',
+                ],
+                [
+                    'dName' => 'Apellido',
+                    'name' => 'apellido',
+                    'type' => 'text',
+                ],
+                [
+                    'dName' => 'Fecha de nacimiento',
+                    'name' => 'nacimiento',
+                    'type' => 'date',
+                ],
+                [
+                    'dName' => 'Email',
+                    'name' => 'email',
+                    'type' => 'email',
+                ],
+            ],
+        ];
     }
 }

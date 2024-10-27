@@ -7,15 +7,25 @@
 @stop
 
 @section('content')
-<div style="overflow-y: auto;">
-    @include('adminlte::partials.system32.tabla-pordefecto')
+<div class="col-md-12" style="overflow-y: auto;">
+    @include('adminlte::partials.system32.tabla-pordefecto',[
+      'datos' => $datos,
+      'arregloDatos' => $arregloDatos,
+      'nombre' => $nombre,
+      'fk' => $fk,
+    ])
+    @include('adminlte::partials.system32.modal-crear',[
+      'datos' => $datos,
+      'arregloDatos' => $arregloDatos,
+      'nombre' => $nombre,
+      'fk' => $fk,
+    ])
 </div>
 @stop
 
 @section('css')
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-    <link rel="stylesheet" href="{{ asset('css/datatables/dataTables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatables/dataTables.bootstrap5.css') }}">
 @stop
 
@@ -24,5 +34,5 @@
     <script type="text/javascript" src="{{ asset('js/datatables/dataTables.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatables/dataTables.bootstrap5.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatables/bootstrap.bundle.min.js') }}"></script>
-    <script>new DataTable('#example');</script>
+    <script>new DataTable('#datatables');</script>
 @stop

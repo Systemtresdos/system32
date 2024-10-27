@@ -386,6 +386,7 @@ div.dt-container div.dt-layout-full > *:only-child {
 }
 div.dt-container div.dt-layout-table > div {
   display: block !important;
+  overflow-x: auto;
 }
 
 @media screen and (max-width: 767px) {

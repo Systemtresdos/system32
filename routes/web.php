@@ -1,16 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\RolController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/crud-usuario', [UsuarioController::class, 'index'])->name('crud');
+Route::get('/crud-rol', [RolController::class, 'index'])->name('crud');
 
-Route::get('/crud', function () {
-    return view('crud');
+Route::get('/dm', function () {
+    return view('dm');
 });
 
-#Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-#Route::get('/');
+Auth::routes();

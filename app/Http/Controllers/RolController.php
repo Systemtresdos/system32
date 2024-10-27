@@ -12,7 +12,11 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $rol = new Rol();
+        $arregloDatos = $rol->data();
+        $datos = Rol::all();
+        $nombre = "Rol";
+        return view('crud', compact('datos','arregloDatos','nombre'));
     }
 
     /**
