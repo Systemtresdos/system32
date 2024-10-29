@@ -8,8 +8,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/crud-usuario', [UsuarioController::class, 'index'])->name('crud');
-Route::get('/crud-rol', [RolController::class, 'index'])->name('crud');
+Route::get('/crud-usuario', [UsuarioController::class, 'index'])->name('Usuario.index');
+Route::post('/crud-usuario/crear', [UsuarioController::class, 'create'])->name('Usuario.create');
+Route::get('/crud-rol', [RolController::class, 'index'])->name('Rol.index');
+Route::post('/crud-rol/crear', [RolController::class, 'create'])->name('Rol.create');
+
+
 
 Route::get('/dm', function () {
     return view('dm');

@@ -17,6 +17,7 @@
                     @foreach ($fk as $index)
                         <th>{{$index['name']}}</th>
                     @endforeach
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,13 +28,23 @@
                         $fkarray = $dato->get_fk();
                     }
                 @endphp
-                    <tr>
+                    <tr id = "table_{{$arreglo['id']}}">
                         @foreach ($arregloDatos['data'] as $index)
                             <td>{{ $arreglo[$index['name']] }}</td>
                         @endforeach
                         @foreach ($fk as $index)
                             <td>{{ $fkarray[$index['attr']] }}</td>
                         @endforeach
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info" onclick = "editar_tabla({{ $arreglo['id'] }})" data-toggle="modal" data-target="#editarModal">
+                                    <i class="fas fa-wrench"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -45,6 +56,7 @@
                     @foreach ($fk as $index)
                         <th>{{$index['name']}}</th>
                     @endforeach
+                    <th>Acciones</th>
                 </tr>
             </tfoot>
         </table>

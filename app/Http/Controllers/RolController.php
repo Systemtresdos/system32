@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\rol;
+use App\Models\Rol;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class RolController extends Controller
 {
@@ -12,19 +14,31 @@ class RolController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
         $rol = new Rol();
         $arregloDatos = $rol->data();
         $datos = Rol::all();
         $nombre = "Rol";
-        return view('crud', compact('datos','arregloDatos','nombre'));
+        $fk = [];
+        return view('crud', compact('datos','arregloDatos','nombre','fk'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => ['required', 'string', 'max:255'],
+            'cargo' => ['required', 'string', 'max:255'],
+        ]);
+        // Guardar en la base de datos
+        Rol::create([
+            'nombre' => $request->nombre,
+            'cargo' => $request->cargo,
+        ]);
+        return redirect()->route('Rol.index')
+            ->with('success', 'Rol creado exitosamente.')
+        ;
     }
 
     /**

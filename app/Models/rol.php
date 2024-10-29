@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model
 {
-
+    protected $fillable = [
+        'nombre',
+        'cargo',
+    ];
+    public function get_fk()
+    {
+        return [];
+    }
     public function data(){
         return 
         [

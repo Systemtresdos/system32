@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -17,6 +18,18 @@ return new class extends Migration
             $table->string('cargo');
             $table->timestamps();
         });
+        DB::table('rols')->insert([
+            'nombre' => 'Cliente',
+            'cargo' => 'Usuario sin ningun permiso administrativo.',
+        ]);
+        DB::table('rols')->insert([
+            'nombre' => 'Empleado',
+            'cargo' => 'Usuario con acceso a crud, solo puede ver, editar y  modificar datos.',
+        ]);
+        DB::table('rols')->insert([
+            'nombre' => 'Administrador',
+            'cargo' => 'Usuario con acceso y control total al crud.',
+        ]);
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
@@ -30,13 +43,19 @@ return new class extends Migration
             $table->unsignedBigInteger('rol_fk');
             $table->foreign('rol_fk')->references('id')->on('rols');#->onDelete('cascade');
         });
-    
+        DB::table('usuarios')->insert([
+            'nombre' => 'Administrador',
+            'apellido' => '',
+            'nacimiento' => date("Y-m-d"),
+            'email' => 'admin@system32.com',
+            'password' => Hash::make('123abc'),
+            'rol_fk' => 3,
+        ]);
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
-
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
@@ -45,6 +64,8 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+
     }
 
     /**
