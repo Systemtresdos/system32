@@ -10,6 +10,8 @@ Route::get('/', function () {
 
 Route::get('/crud-usuario', [UsuarioController::class, 'index'])->name('Usuario.index');
 Route::post('/crud-usuario/crear', [UsuarioController::class, 'create'])->name('Usuario.create');
+Route::post('/crud-usuario/editar', [UsuarioController::class, 'edit'])->name('Usuario.edit');
+
 Route::get('/crud-rol', [RolController::class, 'index'])->name('Rol.index');
 Route::post('/crud-rol/crear', [RolController::class, 'create'])->name('Rol.create');
 

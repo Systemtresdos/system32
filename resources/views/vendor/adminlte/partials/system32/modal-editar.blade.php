@@ -5,16 +5,16 @@
 -->
 
 <!-- Modal -->
-<div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="crearModalLabel" aria-hidden="true">
+<div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="crearModalLabel">Editar</h5>
+                <h5 class="modal-title" id="editarModalLabel">Editar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route($nombre.'.create') }}" method="POST">
+            <form action="{{ route($nombre.'.edit') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     {{--ID invisible--}}

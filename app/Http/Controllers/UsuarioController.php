@@ -7,21 +7,24 @@ use App\Models\Rol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    #Variable $nombre por que me da flojera cambiar datos para todos los usuarios
+    public $ClaseNombre = 'usuario';
     public function index()
     {
         if (!Auth::user()) {
             return redirect('/');
         }
-        $usuario = new Usuario();
-        $arregloDatos = $usuario->data();
+        $dato = new Usuario();
+        $arregloDatos = $dato->data();
         $datos = Usuario::all();
-        $nombre = "Usuario";
+        $nombre = ucfirst($this->ClaseNombre);
         $fk = [
             [
                 'name' => 'Rol',
@@ -33,28 +36,57 @@ class UsuarioController extends Controller
         ];
         return view('crud', compact('datos','arregloDatos','nombre','fk'));
     }
-    public function create(Request $request)
-    {
+    private function valitade(Request $request){
         $request->validate([
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'nacimiento' => ['required', 'date'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios'],
         ]);
+    }
+    public function create(Request $request)
+    {
+        $this->valitade($request);
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.$this->ClaseNombre.'s'],
+        ]);
+
         // Guardar en la base de datos
         Usuario::create([
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'nacimiento' => $request->nacimiento,
             'email' => $request->email,
-            'password' => Hash::make('abc123'),
+            'password' => Hash::make('123abc'),
             'rol_fk' => $request->rol_fk,
         ]);
-        return redirect()->route('Usuario.index')
-        ->with('success', 'Usuario creado exitosamente.')
+        return redirect()->route(ucfirst($this->ClaseNombre).'.index')
+        ->with('success', ucfirst($this->ClaseNombre).' creado exitosamente.')
         ->with('warning', 'La contraseña por defecto es: 123abc.');
     }
+    public function edit(Request $request)
+    {
+        $this->valitade($request);
+        
+        $dato = Usuario::find($request->id);
+        
+        if (!$dato) {
+            return redirect()->back()->with('error', ucfirst($this->ClaseNombre).' no encontrado.');
+        }
+        
+        $request->validate([
+            'email' => [Rule::unique($this->ClaseNombre.'s')->ignore($dato->id)],
+        ]);
+        // Actualizar dato
+        $dato->nombre = $request->nombre;
+        $dato->apellido = $request->apellido;
+        $dato->nacimiento = $request->nacimiento;
+        $dato->email = $request->email;
+        $dato->rol_fk = $request->rol_fk;
 
+        $dato->save();
+        return redirect()->route(ucfirst($this->ClaseNombre).'.index')
+        ->with('success', ucfirst($this->ClaseNombre).' modificado exitosamente.');
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -70,15 +102,6 @@ class UsuarioController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(usuario $usuario)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */

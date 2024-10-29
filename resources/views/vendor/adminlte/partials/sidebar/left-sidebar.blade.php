@@ -31,7 +31,14 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                        <a class="nav-link  " href="{{url('crud-usuario')}}">
+                        <a class="nav-link  " href="{{route('Rol.index')}}">
+                            <i class="far fa-fw fa-circle "></i>
+                            <p>Roles</p>
+                        </a>
+                    </ul>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                        <a class="nav-link  " href="{{route('Usuario.index')}}">
                             <i class="far fa-fw fa-circle "></i>
                             <p>Usuarios</p>
                         </a>
