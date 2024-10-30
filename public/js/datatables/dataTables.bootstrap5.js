@@ -70,7 +70,7 @@ $.extend( true, DataTable.ext.classes, {
 		input: "form-control form-control-sm"
 	},
 	length: {
-		select: "form-select form-select-sm"
+		select: "form-control form-select-sm"
 	},
 	processing: {
 		container: "dt-processing card"

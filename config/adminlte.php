@@ -300,6 +300,7 @@ $config = [
 
     'menu' => [
         // Navbar items:
+        /*
         [
             'type' => 'navbar-search',
             'text' => 'search',
@@ -363,7 +364,7 @@ $config = [
             'label_color' => 'success',
         ],
 
-        /*
+        
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

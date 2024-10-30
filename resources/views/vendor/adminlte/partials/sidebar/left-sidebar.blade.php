@@ -31,16 +31,44 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                        <a class="nav-link  " href="{{route('Rol.index')}}">
+                        <a class="nav-link" href="{{route('Usuario.index')}}">
+                            <i class="far fa-fw fa-circle "></i>
+                            <p>Usuarios</p>
+                        </a>
+                    </ul>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{route('Rol.index')}}">
                             <i class="far fa-fw fa-circle "></i>
                             <p>Roles</p>
                         </a>
                     </ul>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                        <a class="nav-link  " href="{{route('Usuario.index')}}">
+                        <a class="nav-link" href="{{route('Marca.index')}}">
                             <i class="far fa-fw fa-circle "></i>
-                            <p>Usuarios</p>
+                            <p>Marcas</p>
+                        </a>
+                    </ul>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{route('Producto.index')}}">
+                            <i class="far fa-fw fa-circle "></i>
+                            <p>Productos</p>
+                        </a>
+                    </ul>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{route('Compra.index')}}">
+                            <i class="far fa-fw fa-circle "></i>
+                            <p>Compras</p>
+                        </a>
+                    </ul>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{route('Pedido.index')}}">
+                            <i class="far fa-fw fa-circle "></i>
+                            <p>Pedidos</p>
                         </a>
                     </ul>
                 </li>

@@ -19,7 +19,6 @@ return new class extends Migration
                 ->default('pendiente');
             $table->decimal('precio_total');
             $table->timestamps();
-            
             $table->unsignedBigInteger('usuario_fk');
             $table->foreign('usuario_fk')->references('id')->on('usuarios');#->onDelete('cascade');
         });

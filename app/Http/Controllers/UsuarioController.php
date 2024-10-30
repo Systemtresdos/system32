@@ -11,9 +11,6 @@ use Illuminate\Validation\Rule;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     #Variable $nombre por que me da flojera cambiar datos para todos los usuarios
     public $ClaseNombre = 'usuario';
     public function index()
@@ -95,45 +92,9 @@ class UsuarioController extends Controller
         if (!$dato) {
             return redirect()->back()->with('error', ucfirst($this->ClaseNombre).' no encontrado.');
         }
-        // Actualizar dato
-        $dato->nombre = $request->nombre;
-        $dato->apellido = $request->apellido;
-        $dato->nacimiento = $request->nacimiento;
-        $dato->email = $request->email;
-        $dato->rol_fk = $request->rol_fk;
 
         $dato->delete();
         return redirect()->route(ucfirst($this->ClaseNombre).'.index')
         ->with('success', ucfirst($this->ClaseNombre).' eliminado exitosamente.');
-    }
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(usuario $usuario)
-    {
-        //
-    }
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(usuario $usuario)
-    {
-        //
     }
 }

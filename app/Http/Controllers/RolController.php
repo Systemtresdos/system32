@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RolController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public $ClaseNombre = 'rol';
     public function index()
     {
         if (!Auth::user()) {
@@ -20,64 +18,50 @@ class RolController extends Controller
         $rol = new Rol();
         $arregloDatos = $rol->data();
         $datos = Rol::all();
-        $nombre = "Rol";
+        $nombre = ucfirst($this->ClaseNombre);
         $fk = [];
         return view('crud', compact('datos','arregloDatos','nombre','fk'));
     }
-
-    public function create(Request $request)
-    {
+    private function valitade(Request $request){
         $request->validate([
             'nombre' => ['required', 'string', 'max:255'],
-            'cargo' => ['required', 'string', 'max:255'],
+            'cargo' => ['required', 'string', 'max:512'],
         ]);
+    }
+    public function create(Request $request)
+    {
+        $this->valitade($request);
         // Guardar en la base de datos
         Rol::create([
             'nombre' => $request->nombre,
             'cargo' => $request->cargo,
         ]);
-        return redirect()->route('Rol.index')
-            ->with('success', 'Rol creado exitosamente.')
+        return redirect()->route(ucfirst($this->ClaseNombre).'.index')
+            ->with('success', ucfirst($this->ClaseNombre).' creado exitosamente.')
         ;
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function edit(Request $request)
     {
-        //
+        $this->valitade($request);
+        $dato = Rol::find($request->id);
+        if (!$dato) {
+            return redirect()->back()->with('error', ucfirst($this->ClaseNombre).' no encontrado.');
+        }
+        // Actualizar dato
+        $dato->nombre = $request->nombre;
+        $dato->cargo = $request->cargo;
+        $dato->save();
+        return redirect()->route(ucfirst($this->ClaseNombre).'.index')
+        ->with('success', ucfirst($this->ClaseNombre).' modificado exitosamente.');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(rol $rol)
+    public function delete(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(rol $rol)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, rol $rol)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(rol $rol)
-    {
-        //
+        $dato = Rol::find($request->id);
+        if (!$dato) {
+            return redirect()->back()->with('error', ucfirst($this->ClaseNombre).' no encontrado.');
+        }
+        $dato->delete();
+        return redirect()->route(ucfirst($this->ClaseNombre).'.index')
+        ->with('success', ucfirst($this->ClaseNombre).' eliminado exitosamente.');
     }
 }
