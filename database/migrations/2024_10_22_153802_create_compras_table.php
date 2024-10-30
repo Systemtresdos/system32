@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('precio_total');
             $table->timestamps();
             $table->unsignedBigInteger('usuario_fk');
-            $table->foreign('usuario_fk')->references('id')->on('usuarios');#->onDelete('cascade');
+            $table->foreign('usuario_fk')->references('id')->on('usuarios')->onDelete('cascade');
         });
     }
 

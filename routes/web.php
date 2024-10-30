@@ -9,7 +9,10 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\CompraController;
 
 Route::get('/', function () {
-    return view('welcome');
+    if (!Auth::user()) {
+        return redirect('/login');
+    }
+    return redirect('/usuario');
 });
 
 Route::get('/usuario', [UsuarioController::class, 'index'])->name('Usuario.index');

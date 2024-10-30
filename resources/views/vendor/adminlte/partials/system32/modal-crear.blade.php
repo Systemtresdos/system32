@@ -26,7 +26,13 @@
                                     @case('textarea')
                                         <textarea class="form-control" name="{{ $index['name'] }}" rows="3" placeholder="{{ $index['dName'] }}"></textarea>
                                     @break
-
+                                    @case('enum')
+                                        <select class="form-control" id="{{$index['name']}}" name="{{$index['name']}}">
+                                            @foreach ($index['enum'] as $enum)
+                                                <option value="{{$enum['name']}}">{{$enum['dName']}}</option>
+                                            @endforeach
+                                        </select>
+                                    @break
                                     @default
                                         <input id="{{ $index['dName'] }}" name="{{ $index['name'] }}"
                                             type="{{ $index['type'] }}" class="form-control"

@@ -48,5 +48,3 @@ INSERT INTO pedidos (cantidad, compra_fk, producto_fk) VALUES
 (2, 5, 3),
 (1, 5, 4),
 (2, 5, 5);
-
-select * from compras;

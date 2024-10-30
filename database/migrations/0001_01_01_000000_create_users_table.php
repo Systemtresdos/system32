@@ -41,7 +41,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('rol_fk');
-            $table->foreign('rol_fk')->references('id')->on('rols');#->onDelete('cascade');
+            $table->foreign('rol_fk')->references('id')->on('rols')->onDelete('cascade');
         });
         DB::table('usuarios')->insert([
             'nombre' => 'Administrador',

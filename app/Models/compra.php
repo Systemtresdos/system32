@@ -42,10 +42,10 @@ class Compra extends Model
                     'name' => 'tipo_pago',
                     'type' => 'enum',
                     'enum' => [
-                        'Tarjeta de credito',
-                        'Paypal',
-                        'Bitcoun',
-                        'Credito de tienda',
+                        ['dName' => 'Tarjeta de credito', 'name' => 'tarjeta_credito'],
+                        ['dName' => 'Paypal', 'name' => 'paypal'],
+                        ['dName' => 'Bitcoin', 'name' => 'bitcoin'],
+                        ['dName' => 'Credito de tienda', 'name' => 'credito_tienda'],
                     ],
                 ],
                 [
@@ -53,8 +53,8 @@ class Compra extends Model
                     'name' => 'estado_pago',
                     'type' => 'enum',
                     'enum' => [
-                        'Completado',
-                        'Pendiente',
+                        ['dName' => 'Completado', 'name' => 'completado'],
+                        ['dName' => 'Pendiente', 'name' => 'pendiente'],
                     ],
                 ],
                 [
