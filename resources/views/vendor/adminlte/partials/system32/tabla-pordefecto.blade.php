@@ -40,7 +40,7 @@
                                 <button type="button" class="btn btn-info" onclick = "editar_tabla({{ $arreglo['id'] }})" data-toggle="modal" data-target="#editarModal">
                                     <i class="fas fa-wrench"></i>
                                 </button>
-                                <button type="button" class="btn btn-danger">
+                                <button type="button" class="btn btn-danger" onclick = "eliminar_tabla({{ $arreglo['id'] }})" data-toggle="modal" data-target="#eliminarModal">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>

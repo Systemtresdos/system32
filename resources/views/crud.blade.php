@@ -26,6 +26,12 @@
       'nombre' => $nombre,
       'fk' => $fk,
     ])
+    @include('adminlte::partials.system32.modal-eliminar',[
+      'datos' => $datos,
+      'arregloDatos' => $arregloDatos,
+      'nombre' => $nombre,
+      'fk' => $fk,
+    ])
 </div>
 @stop
 

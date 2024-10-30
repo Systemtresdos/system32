@@ -87,6 +87,25 @@ class UsuarioController extends Controller
         return redirect()->route(ucfirst($this->ClaseNombre).'.index')
         ->with('success', ucfirst($this->ClaseNombre).' modificado exitosamente.');
     }
+    public function delete(Request $request)
+    {
+        
+        $dato = Usuario::find($request->id);
+        
+        if (!$dato) {
+            return redirect()->back()->with('error', ucfirst($this->ClaseNombre).' no encontrado.');
+        }
+        // Actualizar dato
+        $dato->nombre = $request->nombre;
+        $dato->apellido = $request->apellido;
+        $dato->nacimiento = $request->nacimiento;
+        $dato->email = $request->email;
+        $dato->rol_fk = $request->rol_fk;
+
+        $dato->delete();
+        return redirect()->route(ucfirst($this->ClaseNombre).'.index')
+        ->with('success', ucfirst($this->ClaseNombre).' eliminado exitosamente.');
+    }
     /**
      * Store a newly created resource in storage.
      */
