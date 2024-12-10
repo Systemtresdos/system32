@@ -3,9 +3,11 @@
         <h3 class="card-title">
             {{$nombre}}
         </h3>
+        @if (Auth::user()->rol->crear_crud)
         <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#crearModal">
             <i class="fas fa-plus"></i> Agregar
         </button>
+        @endif
     </div>
     <div class="card-body">
         <table id="datatables" class="table table-striped">
@@ -37,12 +39,16 @@
                         @endforeach
                         <td>
                             <div class="btn-group">
+                            @if (Auth::user()->rol->modificar_crud)
                                 <button type="button" class="btn btn-info" onclick = "editar_tabla({{ $arreglo['id'] }})" data-toggle="modal" data-target="#editarModal">
                                     <i class="fas fa-wrench"></i>
                                 </button>
+                            @endif
+                            @if (Auth::user()->rol->eliminar_crud)
                                 <button type="button" class="btn btn-danger" onclick = "eliminar_tabla({{ $arreglo['id'] }})" data-toggle="modal" data-target="#eliminarModal">
                                     <i class="fas fa-trash"></i>
                                 </button>
+                            @endif
                             </div>
                         </td>
                     </tr>

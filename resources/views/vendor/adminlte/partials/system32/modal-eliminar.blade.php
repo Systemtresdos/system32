@@ -16,7 +16,7 @@
             </div>
 
             <h5 class="login-box-msg" id="input_eliminar_texto"></h5>
-            <form action="{{ route($nombre.'.delete') }}" method="POST">
+            <form action="{{url()->current().'/eliminar/?tabla='.$nombre}}" method="POST">
                 @csrf
                 <input type="hidden" name="id" id="input_eliminar"/>
                 <div class="modal-footer">

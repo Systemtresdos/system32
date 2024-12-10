@@ -29,48 +29,15 @@
                         <i class="fas fa-fw fa-database "></i>
                         <p>Base de datos<i class="fas fa-angle-left right"></i></p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{route('Usuario.index')}}">
-                            <i class="far fa-fw fa-circle "></i>
-                            <p>Usuarios</p>
-                        </a>
-                    </ul>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{route('Rol.index')}}">
-                            <i class="far fa-fw fa-circle "></i>
-                            <p>Roles</p>
-                        </a>
-                    </ul>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{route('Marca.index')}}">
-                            <i class="far fa-fw fa-circle "></i>
-                            <p>Marcas</p>
-                        </a>
-                    </ul>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{route('Producto.index')}}">
-                            <i class="far fa-fw fa-circle "></i>
-                            <p>Productos</p>
-                        </a>
-                    </ul>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{route('Compra.index')}}">
-                            <i class="far fa-fw fa-circle "></i>
-                            <p>Compras</p>
-                        </a>
-                    </ul>
-                    <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{route('Pedido.index')}}">
-                            <i class="far fa-fw fa-circle "></i>
-                            <p>Pedidos</p>
-                        </a>
-                    </ul>
+                    @foreach ('App\Http\Controllers\CrudController'::get_tablas() as $tabla)
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item">
+                            <a class="nav-link" href="{{url()->current().'?tabla='.$tabla}}">
+                                <i class="far fa-fw fa-circle "></i>
+                                <p>{{$tabla}}</p>
+                            </a>
+                        </ul>
+                    @endforeach
                 </li>
                 
                 @endif

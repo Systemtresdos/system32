@@ -14,7 +14,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route($nombre.'.edit') }}" method="POST">
+            <form action="{{url()->current().'/editar/?tabla='.$nombre}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     {{--ID invisible--}}
@@ -23,22 +23,41 @@
                     <h5 class="login-box-msg">Ingrese los datos de {{ $nombre }}</h5>
                     @foreach ($arregloDatos['data'] as $index)
                         @if ($index['type'] != 'auto')
-                            <div class="form-group mb-3">
-                                <label for="{{ $index['dName'] }}">{{ $index['dName'] }}</label>
+                            @php
+                                $class='';
+                                switch ($index['type']){
+                                    case 'switch':
+                                        $class = 'custom-control custom-switch';
+                                }
+                            @endphp
+                            <div class="form-group mb-3 {{$class}}">
+                                @switch ($index['type'])
+                                    @case ('switch')
+                                        @break
+                                    @default
+                                        <label for="{{$index['name']}}">{{$index['dName']}}</label>
+                                @endswitch
+                                @php $extra=''; @endphp
                                 @switch($index['type'])
+                                    @case('switch')
+                                        <input type="checkbox" class="custom-control-input input_editar" name="{{$index['name']}}" id="{{$index['name']}}">
+                                        <label class = "custom-control-label" for="{{$index['name']}}">{{$index['dName']}}</label>
+                                    @break
                                     @case('textarea')
                                         <textarea class="form-control input_editar" name="{{ $index['name'] }}" rows="3" placeholder="{{ $index['dName'] }}"></textarea>
                                     @break
                                     @case('enum')
                                         <select class="form-control input_editar" id="{{$index['name']}}" name="{{$index['name']}}">
+                                            @php $i = 1;@endphp
                                             @foreach ($index['enum'] as $enum)
-                                                <option value="{{$enum['name']}}">{{$enum['dName']}}</option>
+                                                <option value="{{$i}}">{{$enum['dName']}}</option>
+                                                @php $i++;@endphp
                                             @endforeach
                                         </select>
                                     @break
                                     @default
                                         <input id="{{ $index['dName'] }}" name="{{ $index['name'] }}"
-                                            type="{{ $index['type'] }}" class="form-control input_editar"
+                                            type="{{ $index['type'] }}" class="form-control input_editar" {{ $extra }}
                                             placeholder="{{ $index['dName'] }}" />
                                 @endswitch
                             </div>

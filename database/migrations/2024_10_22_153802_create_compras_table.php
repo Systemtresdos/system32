@@ -21,6 +21,8 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('usuario_fk');
             $table->foreign('usuario_fk')->references('id')->on('usuarios')->onDelete('cascade');
+            
+            $table->boolean('active')->default(1);
         });
     }
 

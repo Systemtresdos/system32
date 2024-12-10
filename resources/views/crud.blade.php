@@ -8,30 +8,38 @@
 
 @section('content')
 <div class="col-md-12" style="overflow-y: auto;">
+  @if (Auth::user()->rol->ver_crud)
     @include('adminlte::partials.system32.tabla-pordefecto',[
       'datos' => $datos,
       'arregloDatos' => $arregloDatos,
       'nombre' => $nombre,
       'fk' => $fk,
     ])
+  @if (Auth::user()->rol->crear_crud)
     @include('adminlte::partials.system32.modal-crear',[
       'datos' => $datos,
       'arregloDatos' => $arregloDatos,
       'nombre' => $nombre,
       'fk' => $fk,
     ])
+  @endif
+  @if (Auth::user()->rol->modificar_crud)
     @include('adminlte::partials.system32.modal-editar',[
       'datos' => $datos,
       'arregloDatos' => $arregloDatos,
       'nombre' => $nombre,
       'fk' => $fk,
     ])
+  @endif
+  @if (Auth::user()->rol->eliminar_crud)
     @include('adminlte::partials.system32.modal-eliminar',[
       'datos' => $datos,
       'arregloDatos' => $arregloDatos,
       'nombre' => $nombre,
       'fk' => $fk,
     ])
+  @endif
+  @endif
 </div>
 @stop
 
@@ -55,6 +63,9 @@
         @foreach ($errors->all() as $error)
             toastr.error('Error: {{ $error }}')
         @endforeach
+      @endif
+      @if (session('error'))
+        toastr.error('Error: {{ session('error') }}')
       @endif
       @if (session('warning'))
         toastr.warning('Aviso: {{ session('warning') }}')

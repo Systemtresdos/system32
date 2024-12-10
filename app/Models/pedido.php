@@ -26,7 +26,14 @@ class Pedido extends Model
             'producto_fk' => $this->producto->nombre,
         ];
     }
-    public function data(){
+    public static function get_validate(){
+        return [
+            'stock' => ['required', 'integer','min:0','max:999999'],
+            'compra_fk' => ['required', 'exists:compras,id'],
+            'producto_fk' => ['required', 'exists:productos,id']
+        ];
+    }
+    public static function get_labels(){
         return 
         [
             'data' => [
@@ -40,6 +47,24 @@ class Pedido extends Model
                     'name' => 'cantidad',
                     'type' => 'number',
                 ],
+            ],
+        ];
+    }
+    public static function get_fkLabels(){
+        return [
+            [
+                'name' => 'Compra',
+                'attr' => 'compra_fk',
+                'fk_name' => 'id',
+                'fk_id' => 'id',
+                'data' => Compra::select('id')->get(),
+            ],
+            [
+                'name' => 'Producto',
+                'attr' => 'producto_fk',
+                'fk_name' => 'nombre',
+                'fk_id' => 'id',
+                'data' => Producto::select('id', 'nombre')->get(),
             ],
         ];
     }

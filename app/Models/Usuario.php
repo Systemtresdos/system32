@@ -59,8 +59,16 @@ class Usuario extends Authenticatable
             'rol_fk' => $this->rol->nombre,
         ];
     }
-
-    public function data(){
+    public static function get_validate(){
+        return [
+            'nombre' => ['required', 'string', 'max:16'],
+            'apellido' => ['required', 'string', 'max:16'],
+            'nacimiento' => ['required', 'date'],
+            'email' => ['required', 'email'],
+            'rol_fk' => ['required', 'exists:rols,id']
+        ];
+    }
+    public static function get_labels(){
         
         return [
             'data' => [
@@ -89,6 +97,17 @@ class Usuario extends Authenticatable
                     'name' => 'email',
                     'type' => 'email',
                 ],
+            ],
+        ];
+    }
+    public static function get_fkLabels(){
+        return [
+            [
+                'name' => 'Rol',
+                'attr' => 'rol_fk',//Este se usara como un identificador para get_fk
+                'fk_name' => 'nombre',
+                'fk_id' => 'id',
+                'data' => Rol::select('id', 'nombre')->get(),
             ],
         ];
     }

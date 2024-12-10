@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('compra_fk')->references('id')->on('compras')->onDelete('cascade');
             $table->unsignedBigInteger('producto_fk');
             $table->foreign('producto_fk')->references('id')->on('productos')->onDelete('cascade');
+            
+            $table->boolean('active')->default(1);
         });
     }
 

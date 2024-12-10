@@ -21,6 +21,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('marca_fk');
             $table->foreign('marca_fk')->references('id')->on('marcas')->onDelete('cascade');
+            
+            $table->boolean('active')->default(1);
         });
     }
 

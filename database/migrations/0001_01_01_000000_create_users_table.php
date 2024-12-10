@@ -15,20 +15,43 @@ return new class extends Migration
         Schema::create('rols', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('cargo');
+            $table->boolean('ver_crud')->default(0);
+            $table->boolean('crear_crud')->default(0);
+            $table->boolean('modificar_crud')->default(0);
+            $table->boolean('desactivar_crud')->default(0);
+            $table->boolean('eliminar_crud')->default(0);
             $table->timestamps();
+
+            $table->boolean('active')->default(1);
         });
         DB::table('rols')->insert([
-            'nombre' => 'Cliente',
-            'cargo' => 'Usuario sin ningun permiso administrativo.',
+            'nombre' => 'Root',
+            'ver_crud' => 1,
+            'crear_crud' => 1,
+            'modificar_crud' => 1,
+            'desactivar_crud' => 1,
+            'eliminar_crud' => 1,
         ]);
         DB::table('rols')->insert([
-            'nombre' => 'Empleado',
-            'cargo' => 'Usuario con acceso a crud, solo puede ver, editar y  modificar datos.',
+            'nombre' => 'Jefe de Planta',
+            'ver_crud' => 1,
+            'crear_crud' => 1,
+            'modificar_crud' => 1,
+            'desactivar_crud' => 1,
         ]);
         DB::table('rols')->insert([
-            'nombre' => 'Administrador',
-            'cargo' => 'Usuario con acceso y control total al crud.',
+            'nombre' => 'Secretaria',
+            'ver_crud' => 1,
+            'crear_crud' => 1,
+            'modificar_crud' => 1,
+            'desactivar_crud' => 1,
+        ]);
+        DB::table('rols')->insert([
+            'nombre' => 'Pasante',
+            'ver_crud' => 1,
+            'crear_crud' => 1,
+            'modificar_crud' => 1,
+            'desactivar_crud' => 1,
         ]);
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
@@ -37,11 +60,13 @@ return new class extends Migration
             $table->date('nacimiento');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->default(Hash::make('123abc'));
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('rol_fk');
             $table->foreign('rol_fk')->references('id')->on('rols')->onDelete('cascade');
+
+            $table->boolean('active')->default(1);
         });
         DB::table('usuarios')->insert([
             'nombre' => 'Administrador',
@@ -49,7 +74,7 @@ return new class extends Migration
             'nacimiento' => date("Y-m-d"),
             'email' => 'admin@system32.com',
             'password' => Hash::make('123abc'),
-            'rol_fk' => 3,
+            'rol_fk' => 1,
         ]);
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
@@ -64,8 +89,6 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-
-
     }
 
     /**

@@ -12,23 +12,29 @@ class Compra extends Model
         'precio_total',
         'usuario_fk',
     ];
-    public function usuario()
-    {
+    public function usuario(){
         return $this->belongsTo(Usuario::class, 'usuario_fk');
     }
-    public function get_fk()
-    {   
+    public function get_fk(){   
         if($this->usuario){
-        return [
-            'usuario_fk' => $this->usuario->nombre,
-        ];
+            return [
+                'usuario_fk' => $this->usuario->email,
+            ];
         }else{
             return[
                 'usuario_fk' => 'No encontrado'
             ];
         }
     }
-    public function data(){
+    public static function get_validate(){
+        return [
+            'precio_total' => ['required', 'numeric','min:0','max:999999'],
+            'tipo_pago' => ['required', 'integer','min:1','max:4'],
+            'estado_pago' => ['required', 'integer', 'min:1', 'max:2'],
+            'usuario_fk' => ['required', 'exists:usuarios,id']
+        ];
+    }
+    public static function get_labels(){
         return 
         [
             'data' => [
@@ -62,6 +68,17 @@ class Compra extends Model
                     'name' => 'precio_total',
                     'type' => 'number',
                 ],
+            ],
+        ];
+    }
+    public static function get_fkLabels(){
+        return [
+            [
+                'name' => 'Usuario',
+                'attr' => 'usuario_fk',//Este se usara como un identificador para get_fk
+                'fk_name' => 'email',
+                'fk_id' => 'id',
+                'data' => Usuario::select('id', 'email')->get(),
             ],
         ];
     }

@@ -14,7 +14,13 @@ class Marca extends Model
     {
         return [];
     }
-    public function data(){
+    public static function get_validate(){
+        return [
+            'nombre' => ['required', 'string', 'max:16'],
+            'descripcion' => ['required', 'string', 'max:255'],
+        ];
+    }
+    public static function get_labels(){
         return 
         [
             'data' => [
@@ -35,5 +41,8 @@ class Marca extends Model
                 ],
             ],
         ];
+    }
+    public static function get_fkLabels(){
+        return [];
     }
 }

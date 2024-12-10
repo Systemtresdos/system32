@@ -1,5 +1,5 @@
 use system32laravel;
-SET FOREIGN_KEY_CHECKS = 0;
+-- SET FOREIGN_KEY_CHECKS = 0;
 INSERT INTO usuarios (id, nombre, apellido, email, password, nacimiento, rol_fk) 
 VALUES
         (5, 'Juan',    'Perez',    'jperez@system32.com',  'jperez123', '2024-02-01', 1),
