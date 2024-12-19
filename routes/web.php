@@ -31,4 +31,27 @@ Route::post('/crud/eliminar', function (Request $request) {
     return CrudController::delete($request);
 });
 
+Route::get('/doom', function(){
+    return view('doom');
+});
+
+Route::get('/crud_update', function () {
+    return response()->stream(function () {
+        while (true) {
+            echo "data: " . json_encode([
+                'type' => 'edit',
+                'id' => '1',
+                'data' => '',
+            ]) . "\n\n";
+            ob_flush();
+            flush();
+            sleep(10); // Enviar datos cada 2 segundos
+        }
+    }, 200, [
+        'Content-Type' => 'text/event-stream',
+        'Cache-Control' => 'no-cache',
+        'Connection' => 'keep-alive',
+    ]);
+});
+
 Auth::routes();

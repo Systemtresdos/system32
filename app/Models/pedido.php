@@ -38,12 +38,12 @@ class Pedido extends Model
         [
             'data' => [
                 [
-                    'dName' => 'ID',
+                    'display-name' => 'ID',
                     'name' => 'id',
                     'type' => 'auto',
                 ],
                 [
-                    'dName' => 'Cantidad',
+                    'display-name' => 'Cantidad',
                     'name' => 'cantidad',
                     'type' => 'number',
                 ],

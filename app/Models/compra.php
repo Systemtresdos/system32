@@ -39,32 +39,32 @@ class Compra extends Model
         [
             'data' => [
                 [
-                    'dName' => 'ID',
+                    'display-name' => 'ID',
                     'name' => 'id',
                     'type' => 'auto',
                 ],
                 [
-                    'dName' => 'Tipo de pago',
+                    'display-name' => 'Tipo de pago',
                     'name' => 'tipo_pago',
                     'type' => 'enum',
                     'enum' => [
-                        ['dName' => 'Tarjeta de credito', 'name' => 'tarjeta_credito'],
-                        ['dName' => 'Paypal', 'name' => 'paypal'],
-                        ['dName' => 'Bitcoin', 'name' => 'bitcoin'],
-                        ['dName' => 'Credito de tienda', 'name' => 'credito_tienda'],
+                        ['display-name' => 'Tarjeta de credito', 'name' => 'tarjeta_credito'],
+                        ['display-name' => 'Paypal', 'name' => 'paypal'],
+                        ['display-name' => 'Bitcoin', 'name' => 'bitcoin'],
+                        ['display-name' => 'Credito de tienda', 'name' => 'credito_tienda'],
                     ],
                 ],
                 [
-                    'dName' => 'Estado de pago',
+                    'display-name' => 'Estado de pago',
                     'name' => 'estado_pago',
                     'type' => 'enum',
                     'enum' => [
-                        ['dName' => 'Completado', 'name' => 'completado'],
-                        ['dName' => 'Pendiente', 'name' => 'pendiente'],
+                        ['display-name' => 'Completado', 'name' => 'completado'],
+                        ['display-name' => 'Pendiente', 'name' => 'pendiente'],
                     ],
                 ],
                 [
-                    'dName' => 'Precio total',
+                    'display-name' => 'Precio total',
                     'name' => 'precio_total',
                     'type' => 'number',
                 ],

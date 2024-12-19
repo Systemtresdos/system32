@@ -28,37 +28,37 @@ class Rol extends Model
         return [
             'data' => [
                 [
-                    'dName' => 'ID',
+                    'display-name' => 'ID',
                     'name' => 'id',
                     'type' => 'auto',
                 ],
                 [
-                    'dName' => 'Nombre',
+                    'display-name' => 'Nombre',
                     'name' => 'nombre',
                     'type' => 'text',
                 ],
                 [
-                    'dName' => 'Ver crud',
+                    'display-name' => 'Ver crud',
                     'name' => 'ver_crud',
                     'type' => 'switch',
                 ],
                 [
-                    'dName' => 'Crear crud',
+                    'display-name' => 'Crear crud',
                     'name' => 'crear_crud',
                     'type' => 'switch',
                 ],
                 [
-                    'dName' => 'Modificar crud',
+                    'display-name' => 'Modificar crud',
                     'name' => 'modificar_crud',
                     'type' => 'switch',
                 ],
                 [
-                    'dName' => 'Desactivar crud',
+                    'display-name' => 'Desactivar crud',
                     'name' => 'desactivar_crud',
                     'type' => 'switch',
                 ],
                 [
-                    'dName' => 'Eliminar crud',
+                    'display-name' => 'Eliminar crud',
                     'name' => 'eliminar_crud',
                     'type' => 'switch',
                 ],

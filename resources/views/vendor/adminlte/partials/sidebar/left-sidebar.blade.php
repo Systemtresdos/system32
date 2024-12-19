@@ -17,31 +17,31 @@
                 @endif
                 @if(!config('adminlte.sidebar_nav_accordion'))
                     data-accordion="false"
-                @endif>
-                {{-- Configured sidebar links --}}
-                @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
-                {{-- Login --}}
-                @if (Auth::user())
-                {{-- Empleado --}}
-                <li class="nav-header ">Administracion</li>
-                <li class="nav-item has-treeview">
-                    <a class="nav-link  " href="">
-                        <i class="fas fa-fw fa-database "></i>
-                        <p>Base de datos<i class="fas fa-angle-left right"></i></p>
-                    </a>
-                    @foreach ('App\Http\Controllers\CrudController'::get_tablas() as $tabla)
+                    @endif>
+                    {{-- Login --}}
+                    @if (Auth::user())
+                    {{-- Empleado --}}
+                    <li class="nav-header ">Administracion</li>
+                    <li class="nav-item has-treeview">
+                        <a class="nav-link  " href="">
+                            <i class="fas fa-fw fa-database "></i>
+                            <p>Base de datos<i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        @foreach ('App\Http\Controllers\CrudController'::get_tablas() as $tabla)
                         <ul class="nav nav-treeview" style="display: none;">
                             <li class="nav-item">
-                            <a class="nav-link" href="{{url()->current().'?tabla='.$tabla}}">
-                                <i class="far fa-fw fa-circle "></i>
-                                <p>{{$tabla}}</p>
-                            </a>
-                        </ul>
-                    @endforeach
-                </li>
-                
-                @endif
-        </nav>
+                                <a class="nav-link" href="{{url('/crud').'?tabla='.$tabla}}">
+                                    <i class="far fa-fw fa-circle "></i>
+                                    <p>{{$tabla}}</p>
+                                </a>
+                            </ul>
+                            @endforeach
+                        </li>
+                        @endif
+                        {{-- Configured sidebar links --}}
+                        @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
+                        
+                    </nav>
     </div>
 
 </aside>

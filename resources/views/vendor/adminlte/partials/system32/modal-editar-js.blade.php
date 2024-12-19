@@ -1,6 +1,11 @@
 <script type="text/javascript">
+  function labelEditar(){
+    let element = document.getElementById("crud_labelNombre");
+    element.innerHTML = "Editar";
+  }
   function editar_tabla(id) {
     //Asignar valor al input de id
+    labelEditar();
     let tabla = document.getElementById("table_".concat(id));
     let datos = []
     for (var td of tabla.children) {
@@ -9,7 +14,7 @@
         datos.push(td.innerHTML);
       }
     }
-    let inputs = document.getElementsByClassName("input_editar");
+    let inputs = document.getElementsByClassName("crud_label");
     let i = 0;
     for (let input of inputs) {
       switch (input.tagName) {

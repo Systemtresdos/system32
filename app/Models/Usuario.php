@@ -65,7 +65,7 @@ class Usuario extends Authenticatable
             'apellido' => ['required', 'string', 'max:16'],
             'nacimiento' => ['required', 'date'],
             'email' => ['required', 'email'],
-            'rol_fk' => ['required', 'exists:rols,id']
+            'password' => ['required', 'email'],
         ];
     }
     public static function get_labels(){
@@ -73,27 +73,27 @@ class Usuario extends Authenticatable
         return [
             'data' => [
                 [
-                    'dName' => 'ID',
+                    'display-name' => 'ID',
                     'name' => 'id',
                     'type' => 'auto',
                 ],
                 [
-                    'dName' => 'Nombre',
+                    'display-name' => 'Nombre',
                     'name' => 'nombre',
                     'type' => 'text',
                 ],
                 [
-                    'dName' => 'Apellido',
+                    'display-name' => 'Apellido',
                     'name' => 'apellido',
                     'type' => 'text',
                 ],
                 [
-                    'dName' => 'Fecha de nacimiento',
+                    'display-name' => 'Fecha de nacimiento',
                     'name' => 'nacimiento',
                     'type' => 'date',
                 ],
                 [
-                    'dName' => 'Email',
+                    'display-name' => 'Email',
                     'name' => 'email',
                     'type' => 'email',
                 ],

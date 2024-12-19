@@ -33,22 +33,22 @@
                                     @case ('switch')
                                         @break
                                     @default
-                                        <label for="{{$index['name']}}">{{$index['dName']}}</label>
+                                        <label for="{{$index['name']}}">{{$index['display-name']}}</label>
                                 @endswitch
                                 @php $extra=''; @endphp
                                 @switch($index['type'])
                                     @case('switch')
                                         <input type="checkbox" class="custom-control-input" name="{{$index['name']}}" id="{{$index['name']}}">
-                                        <label class = "custom-control-label" for="{{$index['name']}}">{{$index['dName']}}</label>
+                                        <label class = "custom-control-label" for="{{$index['name']}}">{{$index['display-name']}}</label>
                                     @break
                                     @case('textarea')
-                                        <textarea class="form-control" name="{{ $index['name'] }}" rows="3" placeholder="{{ $index['dName'] }}"></textarea>
+                                        <textarea class="form-control" name="{{ $index['name'] }}" rows="3" placeholder="{{ $index['display-name'] }}"></textarea>
                                     @break
                                     @case('enum')
                                         <select class="form-control" id="{{$index['name']}}" name="{{$index['name']}}">
                                             @php $i = 1;@endphp
                                             @foreach ($index['enum'] as $enum)
-                                                <option value="{{$i}}">{{$enum['dName']}}</option>
+                                                <option value="{{$i}}">{{$enum['display-name']}}</option>
                                                 @php $i++;@endphp
                                             @endforeach
                                         </select>
@@ -58,7 +58,7 @@
                                     @default
                                         <input id="{{ $index['name'] }}" name="{{ $index['name'] }}"
                                             type="{{ $index['type'] }}" class="form-control" {{ $extra }}
-                                            placeholder="{{ $index['dName'] }}"/>
+                                            placeholder="{{ $index['display-name'] }}"/>
                                 @endswitch
                             </div>
                         @endif

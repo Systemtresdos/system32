@@ -9,22 +9,14 @@
 @section('content')
 <div class="col-md-12" style="overflow-y: auto;">
   @if (Auth::user()->rol->ver_crud)
-    @include('adminlte::partials.system32.tabla-pordefecto',[
+    @include('adminlte::partials.system32.tabla',[
       'datos' => $datos,
       'arregloDatos' => $arregloDatos,
       'nombre' => $nombre,
       'fk' => $fk,
     ])
-  @if (Auth::user()->rol->crear_crud)
-    @include('adminlte::partials.system32.modal-crear',[
-      'datos' => $datos,
-      'arregloDatos' => $arregloDatos,
-      'nombre' => $nombre,
-      'fk' => $fk,
-    ])
-  @endif
-  @if (Auth::user()->rol->modificar_crud)
-    @include('adminlte::partials.system32.modal-editar',[
+  @if (Auth::user()->rol->crear_crud||Auth::user()->rol->modificar_crud)
+    @include('adminlte::partials.system32.modal-dinamico',[
       'datos' => $datos,
       'arregloDatos' => $arregloDatos,
       'nombre' => $nombre,
@@ -45,8 +37,8 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/datatables/dataTables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('css/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/datatables/dataTables.bootstrap5.css') }}">
 @stop
 
 @section('js')
@@ -56,7 +48,7 @@
     <script type="text/javascript" src="{{ asset('js/datatables/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/toastr/toastr.min.js') }}"></script>
     <script>
-      new DataTable('#datatables');
+    let crudTable = new DataTable('#datatables');
     </script>
     <script>
       @if ($errors->any())
@@ -74,5 +66,14 @@
         toastr.success('{{ session('success') }}')
       @endif
     </script>
-    @include('adminlte::partials.system32.modal-editar-js')
+    <script>
+      /*const source = new EventSource('{{url('/crud_update')}}');
+      source.onmessage = function(event) {
+          const data = JSON.parse(event.data);
+          console.log(data['type']); // Recibe los datos JSON
+      };*/
+    </script>
+    @if (Auth::user()->rol->crear_crud||Auth::user()->rol->modificar_crud)
+      @include('adminlte::partials.system32.modal-dinamico-js')
+    @endif
 @stop

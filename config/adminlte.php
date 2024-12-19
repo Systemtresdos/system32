@@ -299,6 +299,11 @@ $config = [
     */
 
     'menu' => [
+        [
+            'text' => 'Doom',
+            'icon' => 'far fa-fw fa-gamepad',
+            'url' => 'doom'
+        ],
         // Navbar items:
         /*
         [

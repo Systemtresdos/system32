@@ -25,17 +25,17 @@ class Marca extends Model
         [
             'data' => [
                 [
-                    'dName' => 'ID',
+                    'display-name' => 'ID',
                     'name' => 'id',
                     'type' => 'auto',
                 ],
                 [
-                    'dName' => 'Nombre',
+                    'display-name' => 'Nombre',
                     'name' => 'nombre',
                     'type' => 'text',
                 ],
                 [
-                    'dName' => 'Descripcion',
+                    'display-name' => 'Descripcion',
                     'name' => 'descripcion',
                     'type' => 'textarea',
                 ],
