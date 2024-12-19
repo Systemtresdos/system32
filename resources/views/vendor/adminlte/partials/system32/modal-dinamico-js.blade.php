@@ -36,7 +36,7 @@
           //rowDT.children[ifk].dataset.fk = row["fk"][jfk];
           jfk++;
         }
-      }
+      } 
     }
     //var row = crudTable.row('#crud-table-5').node();
   }
